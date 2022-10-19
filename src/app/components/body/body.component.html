@@ -1,0 +1,105 @@
+<div>
+    <h1 class="text-primary text-center justify-content" style="margin: 50px;" >Management</h1>
+</div>
+
+<div id="body1">
+<div class="mt-5"><img src="../../../assets/f.png" height="500" width="400" style="margin-left: 90px; margin-top: 50px;"></div>
+
+<div class="m-3">
+   
+    <div class="f1">
+    <div><img src="../../../assets/f1.png" height="100" width="100"></div>
+    <div>
+        <h3>
+        Accounts & Billing Management
+        </h3>
+        <p>
+Manage everything related to the society’s finances. From bookkeeping and asset management to managing bank accounts, its all here.
+        </p>
+    </div>
+        </div>
+
+        <div class="f1">
+            <span><img src="../../../assets/f2.png" height="100" width="100"></span>
+            <span>
+                <h3>
+                    Maintenance & Utility Bill Payments
+                </h3>
+                <p>
+                    All Payment Receivables and Payable through payment gateway .</p>
+                </span>
+                </div>
+
+                <div class="f1">
+                    <span><img src="../../../assets/f3.png" height="100" width="100"></span>
+                    <span>
+                        <h3>Residents & Apartments Management
+                        </h3>
+                        <p>
+                            Residents can update "Expected Visitor" details on MyKommunity mobile app.  </p>
+                        </span>
+                        </div>
+
+                        <div class="f1">
+                            <span><img src="../../../assets/f4.png" height="100" width="100"></span>
+                            <span>
+                                <h3>
+                                    Complain Management
+                                </h3>
+                                <p>
+                                    Track and resolve all residents and apartment issues. Assign owners for issues and escalations for closure and get faster resolutions.</p>
+                                </span>
+                                </div>
+
+                                <div class="f1">
+                                    <span><img src="../../../assets/f5.png" height="100" width="100"></span>
+                                    <span>
+                                        <h3>
+                                            Manage Staff and Vendors
+                                        </h3>
+                                        <p>
+                                            Manage and monitor the staff members and all vendors with ease.</p>
+                                        </span>
+                                        </div>
+
+    </div>
+
+</div>
+
+<div id="body2" style="margin-right: 50px;">
+    <div>
+        <h1 class="text-center text-primary justify-content">Security Guard</h1>
+     <div class="g1">
+
+      <span><img src="../../../assets/g1.png" height="250" width="250" style="margin-left: 50px; margin-top: 50px;"></span>
+      <span><img src="../../../assets/g2.png" height="250" width="250" style="margin-left: 80px; margin-top: 50px;"></span>
+      <span><img src="../../../assets/g3.png" height="250" width="250" style="margin-left: 100px; margin-top: 50px;"></span> 
+
+     </div>
+     </div>
+     <div class="g2" style="margin-bottom: 50px;">
+        <div style="margin-left: 100px;">
+           <h3 >Visitor Management System</h3>
+           <p>We make your visitor a pleasure and secure entry</p>
+           <button class="text-center">Read more</button>
+        </div>
+        <div style="margin-left: 100px;">
+         <h3>Services and Staff Monitoring</h3>
+         <p [ngClass]="{'limitTextHeight': ReadMore}">Security guards can track the entry and exit times of staff and vendors as well as check attendance and put a stop to unauthorized overstaying. </p>
+         <button (click)="onRead()" >
+            {{ReadMore?"Read More":"Read Less"}}
+       </button>     
+     </div>
+      <div style="margin-left: 40px;">
+         <h3>User-friendly Guard App</h3> 
+           <h3> Bill Payments</h3>
+         <p [ngClass]="{'limitTextHeight': isReadMore}">Your security guard can choose to use the app in any
+     that he is comfortable with. This app is designed to keep things simple so that guards can use it efficiently
+         </p>
+         <button (click)="onclick()">
+             {{isReadMore?"Read More":"Read Less"}}
+        </button>
+        
+      </div>
+      </div>
+</div>

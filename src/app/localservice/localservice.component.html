@@ -1,0 +1,124 @@
+<div class="container-fluid ">
+    <div class="page_box p-3 mt-2" style="color: aliceblue;">Local Services</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+ <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(84, 81, 81);" (click)="back()"><mat-icon>fast_rewind</mat-icon> Go Back</button>          
+ <button mat-raised-button class="btn btn-lg btn-primary m-1 p-2" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add Service Provider</button>
+   
+ <table class="table">
+       <thead>
+        <tr>
+         <th scope="col">SI No.</th>
+         <th scope="col">Profile</th>
+         <th scope="col">Name</th>
+         <th scope="col"> Contact Number</th>
+         <th scope="col">Service</th> 
+         <th scope="col">Passcode</th> 
+         <th scope="col">Edit</th>   
+        <th scope="col">Delete</th> 
+           </tr>
+             </thead>
+                <tbody>
+                    <tr *ngFor = "let us of readData |
+        paginate: { 
+           itemsPerPage: 10, 
+           currentPage:page,
+          totalItems:totalLength
+                         }">
+          <th scope="row">{{us.id}}</th>
+         <td>{{us.photo}}</td>
+         <td>{{us.name}}</td>
+         <td>{{us.contact_number}}</td>
+         <td>{{us.service_name}}</td>
+         <td>{{us.passcode}}</td>
+         <td>
+            <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+          </td>
+          <td>
+            <a><mat-icon color="warn" (click)="deleteID(us.id)" >delete</mat-icon></a>
+        </td>
+      
+       </tr>
+                </tbody>
+            </table>
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+            <div fxLayoutAlign="center center" fxFlexFill>
+
+                <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+                  
+                  <div class="modal-header" style="padding: 0px;">
+                    <mat-toolbar class="btn btn-primary">
+                    <h2 class="modal-title" id="modal-basic-title">Add Service Provider</h2>
+                    <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                  </mat-toolbar>
+                  </div>
+                  <div class="modal-body" style="background-color: rgba(47, 141, 165, 0.5);" >
+                    <mat-card fxFlex="100" >
+                    
+                  
+                      <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                        
+                        <mat-form-field appearance="standard"  class="full-width">
+
+                          <mat-label>Full Name</mat-label>
+                          <input matInput inputmode="tel" placeholder="Enter Service Provider" formControlName="name" #nameInput>
+                          <mat-error>Name is required</mat-error>
+                          
+                      </mat-form-field>
+                      <div appearance="fill" class="full-width">
+                        <div style="margin-right:3%; color:#6b6b6b;">
+                          <mat-label>Service</mat-label>
+                      </div>
+                        <select style="width: 430px; height: 30px;" formControlName="category_id" >
+                          <option [value]="0">--select service--</option>
+                          <option  *ngFor="let ct of readData3" value={{ct.id}}>{{ct.service_name}}</option>
+                        </select>
+                    
+                      </div> 
+                       
+
+                      <mat-form-field appearance="standard"  class="full-width">
+                        <mat-label>Passcode</mat-label>
+                        <input matInput type="text" placeholder="passcode"  maxlength="6" minlength="6" formControlName="passcode">
+                        <mat-hint>minimum 6 character</mat-hint>
+                        <mat-error *ngIf="(form.get('passcode')).errors?.required">Passcode is required</mat-error>
+                    </mat-form-field>
+
+                    <div appearance="fill" class="full-width">
+                        <div style="margin-right:3%; color:#6b6b6b;">
+                          <mat-label>Profile Image</mat-label>
+                      </div>
+                             <input type="file" formControlName="photo">
+    
+            
+                         </div>
+              
+                    <mat-form-field class="full-width mt-1" appearance="standard">
+                      <mat-label>Contact Number</mat-label>
+                      <span matPrefix>+91</span><input matInput maxlength="10" minlength="10" formControlName="contact_number">
+                     <mat-hint>Enter your number</mat-hint>
+                      <mat-error *ngIf="(form.get('contact_number')).errors?.required">Number is required</mat-error>
+                      <mat-error *ngIf="(form.get('contact_number')).errors?.minlength">Please enter 10 digit number</mat-error>
+                      
+                  </mat-form-field>
+                      
+                       
+                                         
+                  </form>
+                </mat-card>
+                  </div>
+                
+                
+                  <div class="modal-footer">
+                    <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn btn-primary " [disabled]="!form.valid">create</button>
+                    <button *ngIf="getparamid" (click)="ServiceUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn btn-primary " >Update</button>
+                    <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+                  </div>
+                </ng-template>
+                
+                </div> 
+        
+            </div>
+            </div>

@@ -1,0 +1,35 @@
+<div class="container-fluid w-50">
+    <h2>Register Product</h2>
+    <form [formGroup]="frmRegister" (submit)="RegisterClick(frmRegister.value)">
+        <dl>
+            <dt>Name</dt>
+            <dd><input type="text" formControlName="Name" class="form-control"></dd>
+            <dd *ngIf="submitted && frmRegister.controls['Name'].hasError" class="alert alert-danger">
+                <span *ngIf="frmRegister.controls['Name'].hasError('required')"> Name Required</span>
+                <span *ngIf="frmRegister.controls['Name'].hasError('minlength')"> Name too short....</span>
+               
+            </dd>
+            <dt>Price</dt>
+            <dd><input type="text" formControlName="Price" class="form-control"></dd>
+            <dd *ngIf="submitted && frmRegister.controls['Price'].hasError" class="alert alert-danger">
+                <span *ngIf="frmRegister.controls['Price'].hasError('required')">Price Required</span>
+            </dd>
+            <div formGroupName="frmStockDetails">
+                <h3>Stock Details</h3>
+                <dt>Shipped to</dt>
+                <dd>
+                    <select formControlName="City" class="form-select">
+                        <option>Delhi</option>
+                        <option>Hyd</option>
+                        <option>Bangalore</option>
+                        <option>Mumbai</option>
+                        <option>Goa</option>
+                    </select>
+                </dd>
+                <dt>Stock</dt>
+                <dd><input  formControlName="Stock" type="checkbox"></dd>
+            </div>
+        </dl>
+        <button class="btn btn-primary">Update</button>
+    </form>
+</div>

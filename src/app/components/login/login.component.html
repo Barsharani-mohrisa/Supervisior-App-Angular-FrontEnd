@@ -1,0 +1,29 @@
+<div class="container-fluid">   
+      
+
+    <form [formGroup]="formData" (ngSubmit)="onClickSubmit()" class="form-signin">
+   
+<div style="text-align:center;">
+    <h1><b>Login</b></h1>
+    </div>
+    <dt for="inputEmail" class="m-1">Email Id</dt>
+   <dd> <input type="text" id="Email" class="form-control" 
+        formControlName="email" placeholder="Email" required autofocus>
+       
+    </dd>
+    <dt for="inputPassword" class="m-1">Password</dt>
+   <dd> <input type="password" id="inputPassword" class="form-control" 
+        formControlName="password" placeholder="Password" required></dd>
+        <div class="d-grid">
+        <button [disabled]="loading" class="btn btn-primary ">
+         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+         Login
+     </button>
+     </div>
+     <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+    </form>
+
+               
+             </div>
+          
+       

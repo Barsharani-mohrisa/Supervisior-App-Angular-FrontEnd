@@ -1,0 +1,22 @@
+#body1{
+    display: flex;
+}
+
+
+.f1{
+    display: flex;
+    margin: 20px;
+}
+.g1{
+    display: flex;
+}
+.g2{
+    display: flex;
+}
+.moreText{
+    display: none;
+}
+.limitTextHeight {
+    height: 20px;
+    overflow: hidden;
+}

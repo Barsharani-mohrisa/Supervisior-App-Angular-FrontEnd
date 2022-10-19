@@ -1,0 +1,43 @@
+<div class="container-fluid ">
+    <div class="page_box p-3 mt-2" style="color: aliceblue;">Society Directory</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            
+  <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(84, 81, 81);" (click)="back()"><mat-icon>fast_rewind</mat-icon> Go Back</button>          
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">SI No</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">Email_id</th> 
+                        <th scope="col">Mobile Number</th>
+                        <th scope="col">Flat No</th>
+         
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let us of readData |
+        paginate: { 
+           itemsPerPage: 10, 
+           currentPage:page,
+          totalItems:totalLength
+                         }">
+                         <th scope="row">{{us.id}}</th>
+                         <td>{{us.first_name}}</td>
+                         <td>{{us.last_name}}</td>
+                         <td>{{us.email}}</td>
+                         <td>{{us.phone}}</td>
+                        <td>{{us.flat_number}}</td>
+      
+       </tr>
+                </tbody>
+            </table>
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+            
+        
+            </div>
+            </div>

@@ -1,0 +1,128 @@
+.logo{
+    text-align: center;
+    padding: 2.6rem 1rem;
+}
+ img{
+    width: 50px;
+}
+.mat-icon{
+    vertical-align: center;
+    margin-right: 1rem;
+}
+.mat-divider {
+    border-top-width:2px ;
+    border-color: white;
+}
+.mat-list-item{
+    color: white;
+    font-size: 1rem;
+    height: 44px !important;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    margin: 0.8px;
+}
+.mat-list-item:hover{
+    background: #2c3344 !important;
+}
+
+ 
+.mat-menu-item{
+    position:relative;
+    color: #94a3b8 !important;
+    
+}
+.mat-menu-item:hover{
+    background: #2c3344 !important;
+}
+.menu-item-active{
+    color:whitesmoke;
+}
+.menu-item-active::ng-deep .mat-list-item-content{
+    background: #2c3344 !important;
+    
+}
+.mat-menu-item-content:hover{
+    background: #2c3344 !important;
+}
+.list-item-active{
+    color:white;
+}
+.list-item-active::ng-deep .mat-list-item-content{
+    background: #2c3344 !important;
+    
+}
+.mat-list-item-content:hover{
+    background: #2c3344 !important;
+}
+.mat-subheader{
+    color: #818cf8;
+    font-size: 1rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+    
+}
+
+ .menu ul li>ul{
+     padding: 1px;
+     margin: 0 0 0 20px;
+ }
+ .menu ul li>ul li{
+    height: 25px;
+    line-height:20px;
+    font-size: 15px;
+    padding:1px 1px 1px 20px;
+    font-weight: normal;
+    border-left: 1px solid #fff0f0;
+    margin: 5px;
+    color:#fff0f0;
+    cursor: pointer;
+}
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+
+  .example-accordion {
+    display: block;
+    max-width: 500px;
+  }
+  
+  .example-accordion-item {
+    display: block;
+    border: none;
+  }
+  
+  .example-accordion-item + .example-accordion-item {
+    border-top: none;
+  }
+  
+  .example-accordion-item-header {
+    display: flex;
+    align-content: center;
+    font-size: medium;
+    color: white;
+  }
+  
+  .example-accordion-item-description {
+    font-size: 1.5em;
+    color: white;
+  }
+  
+  .example-accordion-item-header,
+  .example-accordion-item-body {
+    padding: 8px;
+    color: white;
+    
+  }
+  ul{
+      list-style: none;
+  }
+
+  
+  .example-accordion-item-header:hover {
+    cursor: pointer;
+    background-color: #2c3344 !important;
+  }
+  
+  
+  

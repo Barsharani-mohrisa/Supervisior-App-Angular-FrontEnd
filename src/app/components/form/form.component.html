@@ -1,0 +1,30 @@
+<div class="container-fluid w-100 " style="margin-left: 180px;">
+    
+    <form [formGroup]="frmRegister" (submit)="RegisterClick(frmRegister.value)">
+        <dl>
+            <dt>Your Name</dt>
+            <dd><input type="text" formControlName="Name" class="form-control"></dd>
+            <dd *ngIf="submitted && frmRegister.controls['Name'].hasError" class="alert alert-danger">
+                <span *ngIf="frmRegister.controls['Name'].hasError('required')"> Name Required</span>
+                <span *ngIf="frmRegister.controls['Name'].hasError('minlength')"> Name too short....</span>
+               
+            </dd>
+            <dt>Your Email</dt>
+            <dd><input type="email" formControlName="Email" class="form-control"></dd>
+            <dd *ngIf="submitted && frmRegister.controls['Email'].hasError" class="alert alert-danger">
+                <span *ngIf="frmRegister.controls['Email'].hasError('required')">Email Required</span>
+            </dd>
+            <dt>Your Contact Number</dt>
+            <dd><input type="text" formControlName="Number" class="form-control"></dd>
+            <dd *ngIf="submitted && frmRegister.controls['Number'].hasError" class="alert alert-danger">
+                <span *ngIf="frmRegister.controls['Number'].hasError('required')">Email Required</span>
+            </dd>
+            <dt>Any Message</dt>
+            <dd><input type="text" class="form-control"></dd>
+           
+           
+        </dl>
+        <button class="btn btn-success" style="margin-bottom: 10px;">Submit</button>
+    </form>
+</div>
+

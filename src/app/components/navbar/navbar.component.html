@@ -1,0 +1,22 @@
+<mat-nav-list>
+    <div class="logo py-4">
+        <img src="../../../assets/logo.jpg" alt="Company logo">
+    </div>
+    <mat-divider></mat-divider>
+    <h2 matSubheader class="mt-2">Admin</h2>
+    <a mat-list-item routerLink="dashboard" roterLinkActive="list-item-active">
+        <mat-icon>dashboard</mat-icon> Dashboard
+    </a>
+    <a mat-list-item (click)="community()">
+        <mat-icon>people</mat-icon> Community
+    </a>
+    <a  mat-list-item (click)="user()">
+     <mat-icon>supervised_user_circle</mat-icon> Staff 
+    </a>
+
+    <a mat-list-item (click)="city()">
+        <mat-icon>location_city</mat-icon> City
+    </a>
+   
+
+</mat-nav-list>

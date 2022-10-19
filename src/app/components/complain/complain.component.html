@@ -1,0 +1,91 @@
+<div class="container-fluid ">
+    <div class="page_box p-3 mt-2" style="color: aliceblue;">Complain</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(84, 81, 81);" (click)="back()"><mat-icon>fast_rewind</mat-icon> Go Back</button>          
+           
+            
+            <table class="table">
+                <thead>
+                    <tr>
+         <th scope="col">Complain No.</th>
+         <th scope="col">Name</th>
+         <th scope="col">Complain Type</th>
+         <th scope="col">Complain</th> 
+         <th scope="col">Date</th>
+         <th scope="col">Image</th>
+         <th scope="col">Status</th>
+         
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let us of readData |
+        paginate: { 
+           itemsPerPage: 5, 
+           currentPage:page,
+          totalItems:totalLength
+                         }">
+          <th scope="row">{{us.ticket_number}}</th>
+         <td>{{us.first_name}}</td>
+         <td>{{us.complain_type}}</td>
+         <td>{{us.description}}</td>
+         <td>{{us.created_at | date:'medium'}}</td>
+        <td><img  
+            style="width: 600px;height: 300px;">{{us.image}} <button class="btn btn-success m-2"  (click)="open(content,us)"  style="color: white; ">Add Comment</button>
+        </td>
+            <td ><input type="button" style="color: white;" [style.background-color]="map[us.status] === 'Resolved' ? 'green' : 'red'"  value="{{map[us.status]}}">
+            </td>
+
+            
+      
+       </tr>
+                </tbody>
+            </table>
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+            <div fxLayoutAlign="center center" fxFlexFill>
+
+                <ng-template class="modal" #content let-modal style="background-color: rgba(67, 208, 128, 0.5);">
+                  
+                  <div class="modal-header" style="padding: 0px;">
+                    <mat-toolbar class="btn btn-success">
+                    <h2 class="modal-title" id="modal-basic-title">Add Comment</h2>
+                    <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                  </mat-toolbar>
+                  </div>
+                  <div class="modal-body" style="background-color: rgba(37, 217, 148, 0.5);" >
+                    <mat-card fxFlex="100" >
+               
+                  
+                  <div class="container">
+                    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+                      <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                        <input class="fs-5 fw-semibold" [(ngModel)]="first_name"/>
+                      </div>
+                      <div class="list-group list-group-flush border-bottom scrollarea">
+                        <div class="list-group-item list-group-item-action py-3 lh-tight"
+                             *ngFor="let msg of readData"
+                        >
+                          <div class="d-flex w-100 align-items-center justify-content-between">
+                            <strong class="mb-1">{{msg.first_name}}</strong>
+                          </div>
+                          <div class="col-10 mb-1 small">{{msg.comment}}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <form (submit)="submit()">
+                      <input class="form-control" placeholder="Write a message" [value]="comment"
+                      (input)="handleInput($event)"
+                      />
+                    </form>
+                  </div>
+                </mat-card>
+                </div>
+                </ng-template>
+                
+                </div>                                                                                                                
+            
+        
+            </div>
+            </div>

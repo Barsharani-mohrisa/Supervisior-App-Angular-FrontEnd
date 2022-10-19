@@ -1,0 +1,17 @@
+*{
+    height: 100%;
+  }
+  mat-drawer{
+      width: 260px;
+      background: #0f172a;
+      height: 700px;
+  }
+  mat-drawer-container {
+      height: 700px;
+      display: flex;
+      flex-direction: column;
+      width: 1450px;
+  }
+  mat-drawer-content{
+    width: auto;
+  }

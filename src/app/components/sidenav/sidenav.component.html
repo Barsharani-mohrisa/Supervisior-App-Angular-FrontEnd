@@ -1,0 +1,101 @@
+<mat-nav-list>
+    <div class="logo py-4">
+        <img src="../../../assets/logo.jpg" alt="Company logo">
+    </div>
+    <mat-divider></mat-divider>
+    <h2 matSubheader class="mt-2">SuperUser</h2>
+   
+    <a mat-list-item (click)="user()">
+        <mat-icon>people</mat-icon> Users
+    </a>
+    <a mat-list-item (click)="notice()">
+        <mat-icon>event_note</mat-icon> Notice Board
+    </a>
+    <a mat-list-item (click)="complain()">
+        <mat-icon>record_voice_over</mat-icon> Complains
+    </a>
+    <a mat-list-item (click)="directory()">
+        <mat-icon>location_city</mat-icon> Society Directory
+    </a>
+    <a mat-list-item (click)="Emergency()">
+        <mat-icon>phone</mat-icon> Emergency Dial
+    </a>
+    <a mat-list-item (click)="security()">
+        <mat-icon>security</mat-icon> Security
+    </a>
+    <a mat-list-item >
+        <mat-icon><span class="material-icons">
+            currency_rupee
+            </span></mat-icon> Payment
+    </a>
+   
+      
+      <cdk-accordion class="example-accordion" mat-list-item>
+        <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            <mat-icon>home_repair_service</mat-icon>Local Services
+            &nbsp;<span class="example-accordion-item-description">
+             {{ accordionItem.expanded ? ' < ' : '>' }}
+              </span>
+          </div>
+          <div
+            class="example-accordion-item-body"
+            role="region"
+            [style.display]="accordionItem.expanded ? '' : 'none'"
+            [attr.id]="'accordion-body-' + index"
+            [attr.aria-labelledby]="'accordion-header-' + index">
+            <ul >
+                <li> <a mat-list-item (click)="Category()">Local Services</a></li>
+                <li> <a mat-list-item (click)="Service()">Service Providers</a></li>
+            </ul>
+          </div>
+        </cdk-accordion-item>
+      </cdk-accordion>
+      
+      
+  
+    <cdk-accordion class="example-accordion" mat-list-item>
+        <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            <mat-icon>assignment_turned_in</mat-icon> Community Setup
+            
+            &nbsp;<span class="example-accordion-item-description">
+             {{ accordionItem.expanded ? ' < ' : '>' }}
+              </span>
+          </div>
+          <div
+            class="example-accordion-item-body"
+            role="region"
+            [style.display]="accordionItem.expanded ? '' : 'none'"
+            [attr.id]="'accordion-body-' + index"
+            [attr.aria-labelledby]="'accordion-header-' + index">
+            <ul>
+                <li><a mat-list-item (click)="Block()">Add Block/ Building</a></li>
+                    <li><a  mat-list-item (click)="Floor()">Add Floor</a></li>
+                        <li><a  mat-list-item (click)="Flat()">Add Flat</a></li>
+                            <li><a  mat-list-item (click)="Gate()">Add Gate</a></li>
+                
+                  </ul>
+          </div>
+        </cdk-accordion-item>
+      </cdk-accordion>
+      
+   
+
+</mat-nav-list>

@@ -1,0 +1,153 @@
+<div class="container-fluid ">
+    <div class="page_box p-3 mt-2" style="color: aliceblue;">Notice Board</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(84, 81, 81);" (click)="back()"><mat-icon>fast_rewind</mat-icon> Go Back</button>          
+            <button mat-raised-button class="btn btn-lg btn-primary m-1 p-2" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add Notice</button>
+                        <table class="table">
+                <thead>
+                    <tr>
+         <th scope="col">SI No.</th>
+         <th scope="col">Name</th>
+         <th scope="col">title</th>
+         <th scope="col">Message</th>
+         <th scope="col">Date</th> 
+         <th scope="col">Edit</th>
+         <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let us of readData |
+        paginate: { 
+           itemsPerPage: 10, 
+           currentPage:page,
+          totalItems:totalLength
+                         }">
+          <th scope="row">{{us.id}}</th>
+         <td>{{us.first_name +'  '+ us.last_name}}</td>
+         <td>{{us.subject}}</td>
+         <td>{{us.message}}</td>
+         <td>{{us.published_at | date:'medium'}}</td>
+         <td>
+          <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+          </td>
+          <td>
+          <a><mat-icon color="warn" (click)="deleteID(us.id)" >delete</mat-icon></a>
+          </td>
+       </tr>
+                </tbody>
+            </table>
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+<!-- 
+            <form [formGroup]="myForm" (ngSubmit)="submit()">
+  
+              <div class="form-group">
+                  <label for="name">Subject</label>
+                  <input 
+                      formControlName="subject"
+                      id="name" 
+                      type="text" 
+                      class="form-control">
+                  <div *ngIf="f.subject.touched && f.subject.invalid" class="alert alert-danger">
+                      <div *ngIf="f.subject.errors.required">Name is required.</div>
+                      <div *ngIf="f.subject.errors.minlength">Name should be 3 character.</div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Message</label>
+                <input 
+                    formControlName="message"
+                    id="name" 
+                    type="text" 
+                    class="form-control">
+                <div *ngIf="f.message.touched && f.message.invalid" class="alert alert-danger">
+                    <div *ngIf="f.message.errors.required">Name is required.</div>
+                    <div *ngIf="f.message.errors.minlength">Name should be 3 character.</div>
+                </div>
+            </div>
+                
+              <div class="form-group">
+                  <label for="file">File</label>
+                  <input 
+                      formControlName="media"
+                      id="file" 
+                      type="file" 
+                      class="form-control"
+                      (change)="onFileChange($event)">
+                  <div *ngIf="f.media.touched && f.media.invalid" class="alert alert-danger">
+                      <div *ngIf="f.media.errors.required">File is required.</div>
+                  </div>
+              </div>
+                    
+              <button class="btn btn-primary" type="submit">Submit</button>
+          </form> -->
+            <div fxLayoutAlign="center center" fxFlexFill>
+   
+                <ng-template class="modal" #content #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+                 
+                 <div class="modal-header" style="padding: 0px;">
+                   <mat-toolbar class="btn btn-primary">
+                   <h2 class="modal-title" id="modal-basic-title">Add Notice</h2>
+                   <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                 </mat-toolbar>
+                 </div>
+                 <div class="modal-body" style="background-color: rgba(47, 141, 165, 0.5);" >
+                   <mat-card fxFlex="100" >
+                   
+                  
+                   <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                     
+
+                   
+                       
+                     <mat-form-field appearance="standard"  class="full-width">
+                         <mat-label>Notice Title</mat-label>
+                         <input matInput #subject placeholder="Notice title" formControlName="subject" >
+                         
+                         <mat-error>Title required</mat-error>
+                         
+                     </mat-form-field>
+                     
+                     <mat-form-field appearance="standard"  class="full-width">
+                       <mat-label>Message</mat-label>
+                       <textarea  #message style="height: 200px;" matInput placeholder="Type here..." formControlName="message" >
+
+
+                           </textarea>
+                       <mat-error>Message can't be blank</mat-error>
+                       
+                   </mat-form-field>
+               
+                   <div appearance="fill" class="full-width">
+                    <div style="margin-right:3%; color:#6b6b6b;">
+                      <mat-label>Image</mat-label>
+                  </div>
+                   
+                  <input  type="file" #media (change)="selectImage($event)" formControlName="media">
+                  <img [src]="SelectedImage" style="height: 100px; width: 100px;">
+                    
+                  </div> 
+               
+                    
+                 </form>
+               </mat-card>
+                 </div>
+               
+                 <div class="modal-footer">
+                    
+                    <button *ngIf="!getparamid" (click)="saveDetails(subject,message,media)" (click)="modal.close('Save click')"  class=" btn-group btn btn-primary" >Create</button>
+                    <button *ngIf="getparamid" (click)="NoticeUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn btn-primary " >Update</button> 
+                   <button type="submit"  class=" btn-group btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+                 </div>
+                 
+               </ng-template>
+               
+               </div>
+
+
+             
+        
+            </div>
+            </div>

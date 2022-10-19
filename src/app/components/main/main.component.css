@@ -1,0 +1,75 @@
+#main{
+    display: flex;
+}
+img {
+    
+    transition: 2s;
+    transform: scale3d(1,1,1);
+
+}
+img:hover{
+    transform: scale3d(1.1,1.1,1.2);
+    transition: 2s;
+}
+
+h2{
+    
+    transition: 2s;
+    transform: scale3d(1,1,1);
+
+}
+h2:hover{
+    transform: scale3d(1.2,1.2,1.2);
+    transition: 2s;
+}
+
+#main2{
+    display: flex;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+input.ng-invalid{
+    border: 1px solid red;
+    box-shadow: 2px 2px 3px red;
+
+}
+input.ng-valid{
+    border: 1px solid green;
+    box-shadow: 2px 2px 3px green;
+
+}
+.main3{
+    position: relative;
+    width: 1200px;
+    height: 500px;
+    
+}
+.main3 .box{
+    position: relative;
+    background-color: rgb(133, 53, 133);
+    display: flex;
+}
+#main2 h1{
+    
+    transition: 2s;
+    transform: scale3d(1,1,1);
+
+}
+#main2 h1:hover{
+    transform: scale3d(1.2,1.2,1.2);
+    transition: 2s;
+}
+.main4{
+    display: flex;
+}
+.main5{
+    display: flex;
+}
+.main6{
+    display: flex;
+}
+.main7{
+    display: flex;
+    
+}

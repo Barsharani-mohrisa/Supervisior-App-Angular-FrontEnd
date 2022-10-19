@@ -1,0 +1,114 @@
+<div class="container-fluid ">
+    <div class="page_box p-3 mt-2" style="color: aliceblue;">Community</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(84, 81, 81);" (click)="back()"><mat-icon>fast_rewind</mat-icon> Go Back</button>          
+            <button mat-raised-button class="btn btn-lg btn-primary m-1 p-2" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add Community</button>
+                       <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th scope="col">SN</th>
+                  <th scope="col">Community Name</th>
+                  <th scope="col">Pincode</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Edit</th>
+                  
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor = "let us of readData |
+                 paginate: { 
+                    itemsPerPage: 10, 
+                    currentPage:page,
+                   totalItems:totalLength
+                                  }">
+                   <th scope="row">{{us.id}}</th>
+                  <td>{{us.community_name}}</td>
+                  <td>{{us.pincode}}</td>
+                  <td>{{us.name}}</td>
+                  <td>{{map[us.is_active]}}</td>
+                  <td>
+                    <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+                    &nbsp;
+                     <a><mat-icon color="warn" (click)="deleteID(us.id)">delete</mat-icon></a>
+                   </td>
+                </tr>
+               
+                </tbody>
+                
+              </table>
+  <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+
+  
+  
+  <div fxLayoutAlign="center center" fxFlexFill>
+
+    <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+      
+      <div class="modal-header" style="padding: 0px;">
+        <mat-toolbar class="btn btn-primary">
+        <h2 class="modal-title" id="modal-basic-title">Add Community</h2>
+        <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </mat-toolbar>
+      </div>
+      <div class="modal-body" style="background-color: rgba(47, 141, 165, 0.5);" >
+        <mat-card fxFlex="100" >
+        
+      
+          <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+            
+            <mat-form-field appearance="standard"  class="full-width">
+              <mat-label>Community Name</mat-label>
+              <input matInput maxlength="15" inputmode="tel" placeholder="community name" formControlName="community_name" #nameInput>
+              <mat-error>Community is required</mat-error>
+          </mat-form-field>
+
+          <div appearance="fill" class="full-width">
+            <div style="margin-right:3%; color:#6b6b6b;">
+              <mat-label>City</mat-label>
+          </div>
+            <select style="width: 430px; height: 30px;" required formControlName="city_id" >
+              <option [value]="0">--select city--</option>
+              <option  *ngFor="let ct of readData2" value={{ct.id}}>{{ct.name}}</option>
+            </select>
+            <mat-hint>City required</mat-hint>
+          </div>
+          
+          
+         
+        <mat-form-field appearance="standard"  class="full-width">
+          <mat-label>PinCode</mat-label>
+          <input matInput maxlength="6" minlength="6" inputmode="tel" placeholder="pincode" formControlName="pincode" #nameInput>
+          <mat-error>pincode required</mat-error>
+          
+      </mat-form-field>
+       
+      <div style="margin-top:10px;">
+        <div style="margin-right:3%; color:#6b6b6b;">
+            <mat-label>Active Status</mat-label>
+        </div>
+        <mat-radio-group formControlName="is_active">
+            <mat-radio-button value="1">Active</mat-radio-button>&nbsp;&nbsp;
+            <mat-radio-button  value="0">Not active</mat-radio-button>
+        </mat-radio-group>
+   </div>
+            
+      </form>
+    </mat-card>
+      </div>
+    
+      <div class="modal-footer">
+        <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn btn-primary " [disabled]="!form.valid">create</button>
+      <button *ngIf="getparamid" (click)="CommunityUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn btn-primary " >Update</button>
+        <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')" >Cancel</button>
+      </div>
+      
+    </ng-template>
+    
+    </div>      
+  
+          </div>
+          </div>

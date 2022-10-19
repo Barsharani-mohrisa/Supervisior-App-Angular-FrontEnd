@@ -1,0 +1,167 @@
+<div class="container-fluid ">
+    <div class="page_box p-3 mt-2" style="color: aliceblue;">User</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+</div>
+<button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(84, 81, 81);" (click)="back()"><mat-icon>fast_rewind</mat-icon> Go Back</button>          
+<button mat-raised-button class="btn btn-lg btn-primary m-1 p-2" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> New User</button>
+
+    
+        <table class="table">
+            <thead>
+                <tr>
+     <th scope="col">si no.</th>
+     <th scope="col">FirstName</th>
+     <th scope="col">LastName</th>
+     <th scope="col">Email_id</th> 
+     <th scope="col">Mobile Number</th>
+     <th scope="col">Role</th>
+     <th scope="col">Flat No</th>
+     <th scope="col">Occupancy</th>
+     <th scope="col">Residence Status</th>
+     <th scope="col">Account Status</th>
+     <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let us of readData |
+    paginate: { 
+       itemsPerPage: 10, 
+       currentPage:page,
+      totalItems:totalLength
+                     }">
+      <th scope="row">{{us.user_id}}</th>
+     <td>{{us.first_name}}</td>
+     <td>{{us.last_name}}</td>
+     <td>{{us.email}}</td>
+     <td>{{us.phone}}</td>
+    <td>{{us.role}}</td>
+    <td>{{us.flat_number}}</td>
+    <td>{{us.occupancy_status}}</td>
+    <td><input type="button" style="color: white;" [style.background-color]="map2[us.is_approved] === 'Approved' ? 'green' : 'red'" (click)="UpdateStatus(us)" value="{{map2[us.is_approved]}}">
+    </td>
+    <td ><input type="button" style="color: white;" [style.background-color]="map[us.is_admin_approved] === 'Active' ? 'green' : 'red'" (click)="UpdateButton(us)" value="{{map[us.is_admin_approved]}}">
+     
+    </td>
+     <td>
+       <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+     &nbsp; <a><mat-icon color="warn"  (click)="deleteID(us.id)">delete</mat-icon></a>
+      </td>
+   </tr>
+            </tbody>
+        </table>
+        <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+   
+        <div fxLayoutAlign="center center" fxFlexFill>
+   
+            <ng-template class="modal" #content #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+             
+             <div class="modal-header" style="padding: 0px;">
+               <mat-toolbar class="btn btn-primary">
+               <h2 class="modal-title" id="modal-basic-title">Create Profile</h2>
+               <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+             </mat-toolbar>
+             </div>
+             <div class="modal-body" style="background-color: rgba(47, 141, 165, 0.5);" >
+               <mat-card fxFlex="100" >
+               
+              
+               <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                 
+                   
+                 <mat-form-field appearance="standard"  class="full-width">
+                     <mat-label>First Name</mat-label>
+                     <input matInput maxlength="15" inputmode="tel" placeholder="Type name" formControlName="first_name" #nameInput>
+                     <mat-hint>Mini character 2: {{ nameInput.value.length }}/2</mat-hint>
+                     <mat-error>Name is required</mat-error>
+                     
+                 </mat-form-field>
+                 
+                 <mat-form-field appearance="standard"  class="full-width">
+                   <mat-label>Last Name</mat-label>
+                   <input matInput maxlength="15" inputmode="tel" placeholder="Type name" formControlName="last_name" #nameInput>
+                   <mat-hint>Mini character 2: {{ nameInput.value.length }}/2</mat-hint>
+                   <mat-error>Name is required</mat-error>
+                   
+               </mat-form-field>
+           
+                 <mat-form-field appearance="legacy"  class="full-width">
+                     <mat-label>Email Address:</mat-label>
+                     <input matInput type="email" formControlName="email" placeholder="Your email">
+                     
+                     <mat-hint>Enter a valid Email</mat-hint>
+                     <mat-error *ngIf="(form.get('email')).errors?.required">Email is required</mat-error>
+                     <mat-error *ngIf="(form.get('email')).errors?.pattern">Please enter valid email</mat-error>
+                 </mat-form-field>
+           
+                 <mat-form-field appearance="standard"  class="full-width">
+                     <mat-label>Password</mat-label>
+                     <input matInput type="text" placeholder="password"  minlength="6" formControlName="password">
+                     <mat-hint>minimum 6 character</mat-hint>
+                     <mat-error *ngIf="(form.get('password')).errors?.required">Password is required</mat-error>
+                 </mat-form-field>
+                 <mat-form-field appearance="standard"  class="full-width">
+                  <mat-label>Date joined</mat-label>
+                  <input matInput type="date" placeholder="Enter Date here"  formControlName="date_joined">
+                  <mat-hint>minimum 6 character</mat-hint>
+                  <mat-error *ngIf="(form.get('date_joined')).errors?.required">Date is required</mat-error>
+              </mat-form-field>
+           
+                 <mat-form-field class="full-width mt-1" appearance="standard">
+                   <mat-label>Mobile Number</mat-label>
+                   <span matPrefix>+91</span><input matInput maxlength="10" minlength="10" formControlName="phone">
+                   <mat-hint>Enter your number</mat-hint>
+           
+                   <mat-error *ngIf="(form.get('phone')).errors?.required">Number is required</mat-error>
+                   <mat-error *ngIf="(form.get('phone')).errors?.minlength">Please enter minimum 10 digit</mat-error> 
+             
+               </mat-form-field>
+               <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Role</mat-label>
+                <input matInput type="text" placeholder="Role"  minlength="5" formControlName="role">
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="(form.get('role')).errors?.required">Role is required</mat-error>
+            </mat-form-field>
+
+          
+            <div appearance="fill" class="full-width">
+              <div style="margin-right:3%; color:#6b6b6b;">
+                <mat-label>Flat Number</mat-label>
+            </div>
+           
+              <select  style="width: 430px; height: 30px;" formControlName="flat_id" >
+                <option value="">--select Flat Number--</option>
+                <option  *ngFor="let ct of readData2" value={{ct.id}}>{{ct.flat_number}}</option>
+              </select>
+              
+              <mat-hint>Flat number required</mat-hint>
+            </div> 
+            <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Occupancy</mat-label>
+                <input matInput type="text" placeholder="occupancy"  minlength="6" formControlName="occupancy_status">
+                <mat-hint>minimum 6 character</mat-hint>
+                <mat-error *ngIf="(form.get('occupancy_status')).errors?.required">Occupancy is required</mat-error>
+            </mat-form-field>
+            
+             </form>
+           </mat-card>
+             </div>
+           
+             <div class="modal-footer">
+                
+                <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn btn-primary" >Create</button>
+                 <button *ngIf="getparamid"  (click)="userUpdate()" (click)="modal.close('Save click')"   class="btn-group btn btn-primary " >Update</button>
+               
+               <button type="submit"  class=" btn-group btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+             </div>
+             
+           </ng-template>
+           
+           </div>
+           
+
+
+
+            
+            </div>
+            </div>

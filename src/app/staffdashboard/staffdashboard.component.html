@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  
+  <div fxLayout="row wrap"   height="100" (click)="complain()">
+    <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50"  style="padding: 10px;">
+      <mat-card>
+        <mat-card-title fxLayoutAlign="start center">
+          <small class="text-muted" >Complains</small>
+          <span fxFlex></span>
+          <mat-chip
+          class="icon-chip" 
+          color="primary" 
+          selected="true"> <mat-icon>record_voice_over</mat-icon></mat-chip>
+        </mat-card-title>
+        <mat-card-content >
+          <h3 class="m-0 font-normal">{{readData2.length}}</h3>
+         
+          <small class="text-muted"></small>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" style="padding: 10px;" (click)="user()" >
+        <mat-card>
+          <mat-card-title>
+            <small class="text-muted" >Total Users</small>
+            <span fxFlex></span>
+            <mat-chip
+            class="icon-chip" 
+            color="accent" 
+            selected="true"> <mat-icon>people</mat-icon></mat-chip>
+          </mat-card-title>
+          <mat-card-content >
+            <h3 class="m-0 font-normal">{{readData.length}}</h3>
+           
+            <small class="text-muted"></small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      
+      <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" style="padding: 10px;" (click)="services()">
+        <mat-card>
+          <mat-card-title>
+            <small class="text-muted" >Services</small>
+            <span fxFlex></span>
+            <mat-chip
+            class="icon-chip" 
+            color="accent" 
+            selected="true"><mat-icon>home_repair_service</mat-icon></mat-chip>
+          </mat-card-title>
+          <mat-card-content >
+            <h3 class="m-0 font-normal">{{readData3.length}}</h3>
+           
+            <small class="text-muted"></small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" style="padding: 10px;" (click)="flat()">
+        <mat-card>
+          <mat-card-title>
+            <small class="text-muted" >Flats</small>
+            <span fxFlex></span>
+            <mat-chip
+            class="icon-chip" 
+            color="warn" 
+            selected="true"><mat-icon>apartment</mat-icon></mat-chip>
+          </mat-card-title>
+          <mat-card-content >
+            <h3 class="m-0 font-normal">{{readData4.length}}</h3>
+           
+            <small class="text-muted"></small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    
+</div>
+   
+    
+   
